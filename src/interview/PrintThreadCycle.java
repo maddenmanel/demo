@@ -4,8 +4,8 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Main {
-    private Lock lock = new ReentrantLock();
+public class PrintThreadCycle {
+    private final Lock lock = new ReentrantLock();
     private final Condition condition1 = lock.newCondition();
     private final Condition condition2 = lock.newCondition();
     private final Condition condition3 = lock.newCondition();
@@ -60,7 +60,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Main main = new Main();
+        PrintThreadCycle main = new PrintThreadCycle();
         for (int i = 0; i < 30; i++) {
             new Thread(main::printA).start();
             new Thread(main::printB).start();
